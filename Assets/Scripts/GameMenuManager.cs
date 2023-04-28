@@ -12,6 +12,7 @@ public class GameMenuManager : MonoBehaviour
     // Menu placement Variables
     public Transform head;
     public float spawnDistance = 2;
+    public double gestureSimilarityThreshold = 0.5;
     public GameObject menu;
     public InputActionProperty showButton;
 
@@ -93,7 +94,7 @@ public class GameMenuManager : MonoBehaviour
         HideAllMenus();
         welcomeText.text = "Welcome " + currentUser.Name;
         MainMenuObject.SetActive(true);
-       
+
     }
 
     public void Settings()
@@ -107,4 +108,22 @@ public class GameMenuManager : MonoBehaviour
         HideAllMenus();
         MainMenuObject.SetActive(true);
     }
+
+    public void ExitProgram()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // quitting the editor
+#endif
+        Application.Quit(); // Signal wanting to quit the game
+    }
+
+    public void GestureRecognized(GestureCompletionData gestureData)
+    {
+        if (gestureData.similarity >= gestureSimilarityThreshold)
+        {
+            // Do something with the gesture recognition.
+
+        }
+    }
+
 }
