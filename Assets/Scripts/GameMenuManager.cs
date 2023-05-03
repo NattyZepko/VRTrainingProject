@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -121,8 +122,9 @@ public class GameMenuManager : MonoBehaviour
     {
         if (gestureData.similarity >= gestureSimilarityThreshold)
         {
-            // Do something with the gesture recognition.
 
+            // Do something with the gesture recognition.
+            Debug.Log("ID:" + gestureData.gestureID + ", Name:" + gestureData.gestureName + ", Similarity:" + gestureData.similarity);
         }
     }
 

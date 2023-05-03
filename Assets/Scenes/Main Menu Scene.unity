@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 231795542}
   spawnDistance: 2.5
-  gestureSimilarityThreshold: 0.5
+  gestureSimilarityThreshold: 0.55
   menu: {fileID: 2127134496}
   showButton:
     m_UseReference: 1
@@ -9340,20 +9340,20 @@ MonoBehaviour:
   LicenseName: 
   LicenseKey: 
   LicenseFilePath: 
-  GestureDatabaseFile: C:\Users\Admin\AppData\LocalLow\DefaultCompany\My project\ns2.dat
+  GestureDatabaseFile: ns2.dat
   unityXrPlugin: 0
   mivryCoordinateSystem: 1
   LeftHand: {fileID: 1329575879}
-  LeftTriggerInput: 
-  LeftTriggerInputType: 0
+  LeftTriggerInput: XRI_Left_Trigger
+  LeftTriggerInputType: 1
   LeftTriggerValue: 0
   LeftTriggerThreshold: 0.9
   RightHand: {fileID: 803953689}
-  RightTriggerInput: 
+  RightTriggerInput: XRI_Right_Trigger
   RightTriggerInputType: 1
   RightTriggerValue: 0
   RightTriggerThreshold: 0.9
-  ContinuousGestureRecognition: 1
+  ContinuousGestureRecognition: 0
   ContinuousGesturePeriod: 1000
   ContinuousGestureSmoothing: 3
   OnGestureCompletion:
