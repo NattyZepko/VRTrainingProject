@@ -12,9 +12,9 @@ public class GameMenuManager : MonoBehaviour
 {
     // Menu placement Variables
     public Transform head;
-    public float spawnDistance = 2;
+    public float mainMenuSpawnDistance = 2, actionMenuSpawnDistance = 4;
     public double gestureSimilarityThreshold = 0.5;
-    public GameObject menu;
+    public GameObject Menu;
     public InputActionProperty showButton;
 
     // Debugging Text
@@ -33,6 +33,9 @@ public class GameMenuManager : MonoBehaviour
     // Settings menu
     public GameObject SettingMenuObject;
 
+    // Action Menu
+    public GameObject ActionMenu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +52,14 @@ public class GameMenuManager : MonoBehaviour
     {
         if (showButton.action.WasPressedThisFrame())
         {
-            menu.SetActive(!menu.activeSelf); // show/hide
-            menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance; // set location
+            Menu.SetActive(!Menu.activeSelf); // show/hide
+            Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance; // set location
+            ActionMenu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * actionMenuSpawnDistance; // set location
         }
-        menu.transform.LookAt(new Vector3(head.position.x, menu.transform.position.y, head.position.z)); // rotate to the player
-        menu.transform.forward *= -1;
+        Menu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z)); // rotate to the player
+        ActionMenu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z));
+        Menu.transform.forward *= -1;
+        ActionMenu.transform.forward *= -1;
     }
 
     private void HideAllMenus()
@@ -61,6 +67,7 @@ public class GameMenuManager : MonoBehaviour
         LoginMenuObject.SetActive(false);
         MainMenuObject.SetActive(false);
         SettingMenuObject.SetActive(false);
+        ActionMenu.SetActive(false);
     }
 
     public void ReadUserNameInput(string input)
