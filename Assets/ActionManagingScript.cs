@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ActionManagingScript : MonoBehaviour
@@ -12,6 +13,9 @@ public class ActionManagingScript : MonoBehaviour
     public Dictionary<int, Texture2D> gestureImages; // Dictionary to map gesture ID to GIF images
     private int currentGestureIndex = 0;
 
+    public GameObject GestureText;
+    private TextMeshProUGUI currentGestureText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,8 @@ public class ActionManagingScript : MonoBehaviour
         // Initialize the first expected gesture
         string nextGesture = GetNextExpectedGesture();
         Debug.Log("Next Gesture: " + nextGesture);
+        currentGestureText = GestureText.GetComponent<TextMeshProUGUI>();
+        currentGestureText.text = nextGesture;
 
         // Display the gesture image
         DisplayGestureImage(gestureImages[currentGestureIndex]);
@@ -29,6 +35,7 @@ public class ActionManagingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
 
     } 
 
@@ -45,6 +52,7 @@ public class ActionManagingScript : MonoBehaviour
             {
                 string nextGesture = GetNextExpectedGesture();
                 Debug.Log("Next Gesture: " + nextGesture);
+                currentGestureText.text = nextGesture;
 
                 // Display the gesture image
                 DisplayGestureImage(gestureImages[currentGestureIndex]);
