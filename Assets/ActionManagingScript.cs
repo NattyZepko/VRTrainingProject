@@ -17,6 +17,7 @@ public class ActionManagingScript : MonoBehaviour
     private TextMeshProUGUI currentGestureText;
 
     // Start is called before the first frame update
+    /*
     void Start()
     {
         // Add hardcoded gestures
@@ -31,6 +32,7 @@ public class ActionManagingScript : MonoBehaviour
         // Display the gesture image
         DisplayGestureImage(gestureImages[currentGestureIndex]);
     }
+    */
 
     // Update is called once per frame
     void Update()
@@ -93,9 +95,11 @@ public class ActionManagingScript : MonoBehaviour
         Texture2D gestureImage = Resources.Load<Texture2D>(imagePath);
         return gestureImage;
     }
-
+    void AddGestures()
+    { }
 
     // HARD CODED adding gestures
+    /*
     void AddGestures()
     {
         gestureImages = new Dictionary<int, Texture2D>();
@@ -130,4 +134,6 @@ public class ActionManagingScript : MonoBehaviour
         Texture2D leftHandUppercutImage = LoadGestureImage("LeftHandUppercut.gif"); // Replace with actual path
         gestureImages.Add(leftHandUppercutID, leftHandUppercutImage);
     }
+    */
+
 }

@@ -12,10 +12,9 @@ public class GameMenuManager : MonoBehaviour
 {
     // Menu placement Variables
     public Transform head;
-    public float mainMenuSpawnDistance = 2, actionMenuSpawnDistance = 4;
+    public float mainMenuSpawnDistance = 1, actionMenuSpawnDistance = 2;
     public double gestureSimilarityThreshold = 0.5;
     public GameObject Menu;
-    public InputActionProperty showButton;
 
     // Debugging Text
     public GameObject DebuggingText;
@@ -29,9 +28,13 @@ public class GameMenuManager : MonoBehaviour
     public GameObject MainMenuObject;
     public GameObject WelcomeTextObject;
     private TextMeshProUGUI welcomeText;
+    private bool canCheckInput = true;
+    private float cooldownDuration = 0.5f;
+    private float cooldownTimer;
 
     // Settings menu
     public GameObject SettingMenuObject;
+    [SerializeField] UnityEngine.UI.Slider MainMenuDistanceSlider;
 
     // Action Menu
     public GameObject ActionMenu;
@@ -50,14 +53,24 @@ public class GameMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (showButton.action.WasPressedThisFrame())
+        if (!canCheckInput)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0f)
+                canCheckInput = true;
+        }
+
+        //if (showButton.action.WasPressedThisFrame())
+        if (canCheckInput && OVRInput.Get(OVRInput.Button.Start))
         {
             Menu.SetActive(!Menu.activeSelf); // show/hide
             Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance; // set location
             ActionMenu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * actionMenuSpawnDistance; // set location
+            canCheckInput = false;
+            cooldownTimer = cooldownDuration;
         }
         Menu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z)); // rotate to the player
-        ActionMenu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z));
+        ActionMenu.transform.LookAt(new Vector3(head.position.x, ActionMenu.transform.position.y, head.position.z));
         Menu.transform.forward *= -1;
         ActionMenu.transform.forward *= -1;
     }
@@ -133,6 +146,12 @@ public class GameMenuManager : MonoBehaviour
             // Do something with the gesture recognition.
             Debug.Log("ID:" + gestureData.gestureID + ", Name:" + gestureData.gestureName + ", Similarity:" + gestureData.similarity);
         }
+    }
+
+    public void ChangeMainMenuDistance()
+    {
+        this.mainMenuSpawnDistance = MainMenuDistanceSlider.value;
+        Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance;
     }
 
 }
