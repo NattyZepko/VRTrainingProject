@@ -13,8 +13,10 @@ public class GameMenuManager : MonoBehaviour
     // Menu placement Variables
     public Transform head;
     public float mainMenuSpawnDistance = 1, actionMenuSpawnDistance = 2;
+    private const float MAX_MENU_DISTANCE = 3.0f, MIN_MENU_DISTANCE = 0.6f, JUMP_MENU_DISTANCE = 0.2f;
     public double gestureSimilarityThreshold = 0.5;
     public GameObject Menu;
+
 
     // Debugging Text
     public GameObject DebuggingText;
@@ -34,7 +36,7 @@ public class GameMenuManager : MonoBehaviour
 
     // Settings menu
     public GameObject SettingMenuObject;
-    [SerializeField] UnityEngine.UI.Slider MainMenuDistanceSlider;
+    //[SerializeField] UnityEngine.UI.Slider MainMenuDistanceSlider;
 
     // Action Menu
     public GameObject ActionMenu;
@@ -64,15 +66,22 @@ public class GameMenuManager : MonoBehaviour
         if (canCheckInput && OVRInput.Get(OVRInput.Button.Start))
         {
             Menu.SetActive(!Menu.activeSelf); // show/hide
-            Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance; // set location
-            ActionMenu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * actionMenuSpawnDistance; // set location
-            canCheckInput = false;
-            cooldownTimer = cooldownDuration;
+            setMenuPosition();
+
+
         }
         Menu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z)); // rotate to the player
         ActionMenu.transform.LookAt(new Vector3(head.position.x, ActionMenu.transform.position.y, head.position.z));
         Menu.transform.forward *= -1;
         ActionMenu.transform.forward *= -1;
+    }
+
+    private void setMenuPosition()
+    {
+        Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance; // set location
+        ActionMenu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * actionMenuSpawnDistance; // set location
+        canCheckInput = false;
+        cooldownTimer = cooldownDuration;
     }
 
     private void HideAllMenus()
@@ -148,10 +157,29 @@ public class GameMenuManager : MonoBehaviour
         }
     }
 
-    public void ChangeMainMenuDistance()
+    /* public void ChangeMainMenuDistance()
+     {
+         this.mainMenuSpawnDistance = MainMenuDistanceSlider.value;
+         Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance;
+     }*/
+    public void IncreaseMenuDistance()
     {
-        this.mainMenuSpawnDistance = MainMenuDistanceSlider.value;
-        Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance;
+        if (mainMenuSpawnDistance > MIN_MENU_DISTANCE)
+        {
+            mainMenuSpawnDistance -= JUMP_MENU_DISTANCE;
+            setMenuPosition();
+        }
+
     }
+    public void DecreaseMenuDistance()
+    {
+        if (mainMenuSpawnDistance < MAX_MENU_DISTANCE)
+        {
+            mainMenuSpawnDistance += JUMP_MENU_DISTANCE;
+            setMenuPosition();
+        }
+    }
+
+
 
 }

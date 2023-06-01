@@ -1829,8 +1829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead00d81e07c86d4a84ac72a78fa472a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  license_id: 
-  license_key: 
+  license_id: Natty.Zepko@Gmail.com_3NE9htA3zQ9VQUlW1Cxs2nea
+  license_key: a5824cd9e3bb481884834d95df0ec2cf55e0128f27a4a058d3341467994696e6
   license_file_path: 
   unityXrPlugin: 0
   mivryCoordinateSystem: 0
