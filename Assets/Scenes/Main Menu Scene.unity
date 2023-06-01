@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 1522045162}
   mainMenuSpawnDistance: 1
-  actionMenuSpawnDistance: 2
+  actionMenuSpawnDistance: 1.5
   gestureSimilarityThreshold: 0.2
   Menu: {fileID: 2127134496}
   DebuggingText: {fileID: 46507892}
@@ -2815,7 +2815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &592112702
 Transform:
   m_ObjectHideFlags: 0
@@ -2874,7 +2874,7 @@ MonoBehaviour:
     gestureName: right-jab
     similarity: 0
   gestureImageRenderer: {fileID: 0}
-  GestureText: {fileID: 494328366}
+  ActionTextObject: {fileID: 494328366}
 --- !u!1 &631928273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,7 +4744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1197925450
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6447,13 +6447,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 238813574}
+        m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
+        m_MethodName: ShowActionMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6512,7 +6512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1455370860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10552,7 +10552,7 @@ MonoBehaviour:
   LicenseFilePath: 
   GestureDatabaseFile: base-moves.dat
   unityXrPlugin: 0
-  mivryCoordinateSystem: 1
+  mivryCoordinateSystem: 0
   LeftHand: {fileID: 1329575879}
   LeftTriggerInput: XRI_Left_Trigger
   LeftTriggerInputType: 1
@@ -10563,14 +10563,14 @@ MonoBehaviour:
   RightTriggerInputType: 1
   RightTriggerValue: 0
   RightTriggerThreshold: 0.9
-  ContinuousGestureRecognition: 0
+  ContinuousGestureRecognition: 1
   ContinuousGesturePeriod: 1000
   ContinuousGestureSmoothing: 3
   OnGestureCompletion:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 238813574}
-        m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 592112703}
+        m_TargetAssemblyTypeName: ActionManagingScript, Assembly-CSharp
         m_MethodName: GestureRecognized
         m_Mode: 0
         m_Arguments:

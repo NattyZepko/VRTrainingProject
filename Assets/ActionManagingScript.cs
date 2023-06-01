@@ -7,14 +7,23 @@ public class ActionManagingScript : MonoBehaviour
 {
     ActionData[] gestureCollection;
 
-    public float gestureSimilarityThreshold = 0.5f;
+    public float gestureSimilarityThreshold = 0.4f;
     public GestureCompletionData[] gestureList;
     public SpriteRenderer gestureImageRenderer; // Reference to the SpriteRenderer component to display the gesture image
     public Dictionary<int, Texture2D> gestureImages; // Dictionary to map gesture ID to GIF images
     private int currentGestureIndex = 0;
 
-    public GameObject GestureText;
-    private TextMeshProUGUI currentGestureText;
+
+    public GameObject ActionTextObject;
+    private TextMeshProUGUI nextActionText;
+
+
+    void Start()
+    {
+        nextActionText = ActionTextObject.GetComponent<TextMeshProUGUI>();
+        nextActionText.text = gestureList[0].gestureName;
+        Debug.Log("Gesture list size: " + gestureList.Length);
+    }
 
     // Start is called before the first frame update
     /*
@@ -39,43 +48,27 @@ public class ActionManagingScript : MonoBehaviour
     {
 
 
-    } 
+    }
 
     public void GestureRecognized(GestureCompletionData gestureData)
     {
+        //Debug.Log("HELLO WORLD");
         if (gestureData.similarity < gestureSimilarityThreshold)
             return;
         Debug.Log("Gesture recognized: " + gestureData.gestureID + " - " + gestureData.gestureName + ", similarity: " + gestureData.similarity);
-        if (gestureData.gestureID == currentGestureIndex)
+        if (currentGestureIndex >= gestureList.Length)
+            return;
+        if (gestureData.gestureID == gestureList[currentGestureIndex].gestureID)
         {
             // Move to the next gesture
             currentGestureIndex++;
-            if (currentGestureIndex < gestureImages.Count)
+            if (currentGestureIndex >= gestureList.Length)
             {
-                string nextGesture = GetNextExpectedGesture();
-                Debug.Log("Next Gesture: " + nextGesture);
-                currentGestureText.text = nextGesture;
-
-                // Display the gesture image
-                DisplayGestureImage(gestureImages[currentGestureIndex]);
+                nextActionText.text = "Training done, mainifico! BRAVO";
+                // FUNCTION - TO DO ON PRACTICE COMPLETE <-- 
+                return;
             }
-            else
-            {
-                Debug.Log("All gestures completed.");
-                // Do something when all gestures are completed
-            }
-        }
-    }
-
-    string GetNextExpectedGesture()
-    {
-        if (currentGestureIndex < gestureList.Length)
-        {
-            return gestureList[currentGestureIndex].gestureName;
-        }
-        else
-        {
-            return "No more gestures";
+            nextActionText.text = gestureList[currentGestureIndex].gestureName;
         }
     }
 
@@ -98,42 +91,5 @@ public class ActionManagingScript : MonoBehaviour
     void AddGestures()
     { }
 
-    // HARD CODED adding gestures
-    /*
-    void AddGestures()
-    {
-        gestureImages = new Dictionary<int, Texture2D>();
-
-        // Add right hand jab gesture
-        int rightHandJabID = 1;
-        Texture2D rightHandJabImage = LoadGestureImage("RightHandJab.gif"); // Replace with actual path
-        gestureImages.Add(rightHandJabID, rightHandJabImage);
-
-        // Add left hand jab gesture
-        int leftHandJabID = 2;
-        Texture2D leftHandJabImage = LoadGestureImage("LeftHandJab.gif"); // Replace with actual path
-        gestureImages.Add(leftHandJabID, leftHandJabImage);
-
-        // Add right hand arc gesture
-        int rightHandArcID = 3;
-        Texture2D rightHandArcImage = LoadGestureImage("RightHandArc.gif"); // Replace with actual path
-        gestureImages.Add(rightHandArcID, rightHandArcImage);
-
-        // Add left hand arc gesture
-        int leftHandArcID = 4;
-        Texture2D leftHandArcImage = LoadGestureImage("LeftHandArc.gif"); // Replace with actual path
-        gestureImages.Add(leftHandArcID, leftHandArcImage);
-
-        // Add right hand uppercut gesture
-        int rightHandUppercutID = 5;
-        Texture2D rightHandUppercutImage = LoadGestureImage("RightHandUppercut.gif"); // Replace with actual path
-        gestureImages.Add(rightHandUppercutID, rightHandUppercutImage);
-
-        // Add left hand uppercut gesture
-        int leftHandUppercutID = 6;
-        Texture2D leftHandUppercutImage = LoadGestureImage("LeftHandUppercut.gif"); // Replace with actual path
-        gestureImages.Add(leftHandUppercutID, leftHandUppercutImage);
-    }
-    */
 
 }

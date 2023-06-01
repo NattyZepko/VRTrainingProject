@@ -147,7 +147,7 @@ public class GameMenuManager : MonoBehaviour
         Application.Quit(); // Signal wanting to quit the game
     }
 
-    public void GestureRecognized(GestureCompletionData gestureData)
+    /*public void GestureRecognized(GestureCompletionData gestureData)
     {
         if (gestureData.similarity >= gestureSimilarityThreshold)
         {
@@ -155,7 +155,7 @@ public class GameMenuManager : MonoBehaviour
             // Do something with the gesture recognition.
             Debug.Log("ID:" + gestureData.gestureID + ", Name:" + gestureData.gestureName + ", Similarity:" + gestureData.similarity);
         }
-    }
+    }*/
 
     /* public void ChangeMainMenuDistance()
      {
@@ -178,6 +178,12 @@ public class GameMenuManager : MonoBehaviour
             mainMenuSpawnDistance += JUMP_MENU_DISTANCE;
             setMenuPosition();
         }
+    }
+
+    public void ShowActionMenu()
+    {
+        HideAllMenus();
+        ActionMenu.active = true;
     }
 
 
