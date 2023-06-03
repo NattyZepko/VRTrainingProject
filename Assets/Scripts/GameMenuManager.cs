@@ -42,6 +42,7 @@ public class GameMenuManager : MonoBehaviour
     public GameObject ActionMenu;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,8 +68,6 @@ public class GameMenuManager : MonoBehaviour
         {
             Menu.SetActive(!Menu.activeSelf); // show/hide
             setMenuPosition();
-
-
         }
         Menu.transform.LookAt(new Vector3(head.position.x, Menu.transform.position.y, head.position.z)); // rotate to the player
         ActionMenu.transform.LookAt(new Vector3(head.position.x, ActionMenu.transform.position.y, head.position.z));
@@ -147,21 +146,6 @@ public class GameMenuManager : MonoBehaviour
         Application.Quit(); // Signal wanting to quit the game
     }
 
-    /*public void GestureRecognized(GestureCompletionData gestureData)
-    {
-        if (gestureData.similarity >= gestureSimilarityThreshold)
-        {
-
-            // Do something with the gesture recognition.
-            Debug.Log("ID:" + gestureData.gestureID + ", Name:" + gestureData.gestureName + ", Similarity:" + gestureData.similarity);
-        }
-    }*/
-
-    /* public void ChangeMainMenuDistance()
-     {
-         this.mainMenuSpawnDistance = MainMenuDistanceSlider.value;
-         Menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * mainMenuSpawnDistance;
-     }*/
     public void IncreaseMenuDistance()
     {
         if (mainMenuSpawnDistance > MIN_MENU_DISTANCE)
