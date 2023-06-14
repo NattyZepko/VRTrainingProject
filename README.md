@@ -47,4 +47,4 @@ Watch the video:
 
 ## 🎨 Image example:
 
-![image](https://github.com/NattyZepko/VRTrainingProject/assets/50327680/0aa6cf46-6d79-4e49-a16a-46b2c2a05f7b)
+![image](https://i.imgur.com/LuIt3cT.png)
