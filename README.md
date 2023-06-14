@@ -2,7 +2,7 @@
 
 Our Final project for our BSc.
 
-![image](https://github.com/NattyZepko/VRTrainingProject/assets/50327680/5571a60a-3e09-4028-8b22-41fc650b0355)
+![image](https://i.imgur.com/3u8W8PX.png)
 
 
 A Unity-based AI learning project for detecting user gestures (motion) and instructing them in order to train.
