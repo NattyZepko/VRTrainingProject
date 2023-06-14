@@ -14,7 +14,7 @@ The project uses MiVRy package for the AI learning Gesture Detection, and Unity 
 
 
 + What lenguages did you use?
-    - C#, standard with Unity, also very simple.
+    - C#, standard with Unity, also very simple to use for the purposes of this project.
 
 + How does the program recognize your moves?
     - MiVRy package manages the Gesture Recognition with Machine-Learning. While we didn't write it ourselves, we do have an idea of how it works, with KNN algorithm. We feed it coordinates relative to the user's head as fixed points to learn, and the recognition is done by analyzing nearest-neighbor with Eucledean Distance.
