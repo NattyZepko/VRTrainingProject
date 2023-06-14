@@ -41,7 +41,7 @@ The project uses MiVRy package for the AI learning Gesture Detection, and Unity 
 
 Watch the video:
 
-[![Watch the video](https://img.youtube.com/vi/SXXRw-dAFyY/default.jpg)]([https://youtu.be/nTQUwghvy5Q](https://www.youtube.com/watch?v=SXXRw-dAFyY&ab_channel=NattyZepko))
+[![Instructions Video](https://img.youtube.com/vi/SXXRw-dAFyY&ab/0.jpg)](https://www.youtube.com/watch?v=SXXRw-dAFyY&ab)
 
 ---
 
